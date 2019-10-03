@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
+
+Route::get('add-book', 'BooksController@create')->name('add-book');
+Route::post('add-book', 'BooksController@store')->name('store-book');
