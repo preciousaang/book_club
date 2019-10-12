@@ -11,4 +11,8 @@ class Role extends Model
         'full_name',
         'description'
     ];
+
+    public function users(){
+        return $this->hasMany('App\Users');
+    }
 }

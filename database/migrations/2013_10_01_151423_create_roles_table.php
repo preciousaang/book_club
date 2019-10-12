@@ -13,6 +13,7 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -29,7 +30,7 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        //Schema::disableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('roles');
     }
 }

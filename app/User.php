@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
+    public function getIsAdminAttribute(){
+        return $this->role->name == 'admin';
+    }
+
+    public function getIsUserAttribute(){
+        return $this->role->name == 'user';
+    }
+
+    public function getFullNameAttribute(){
+        return ucfirst($this->first_name) ." ". ucfirst($this->last_name);
+    }
 }

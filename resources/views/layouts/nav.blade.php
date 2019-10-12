@@ -1,78 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Book Club</a>
+        <a href="{{route('homepage')}}" class="navbar-brand">Book Club</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{route('homepage')}}" class="nav-link @if(url()->current()==route('homepage')) active @endif"><i class="fa fa-home"></i>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Forum</a>
+                    <a href="{{route('forum')}}" class="nav-link @if(url()->current()==route('forum')) active @endif"><i class="fa fa-newspaper-o"></i>&nbsp;Forum</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Categories</a>
+                    <a href="{{route('list-categories')}}" class="nav-link @if(url()->current()==route('list-categories')) active @endif"><i class="fa fa-list"></i> Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Books</a>
+                    <a href="{{route('list-books')}}" class="nav-link @if(url()->current()==route('list-books')) active @endif"><i class="fa fa-book"></i>&nbsp;Books</a>
                 </li>
+                @can('create', App\Book::class)
+                <li class="nav-item">
+                  <a href="{{route('add-book')}}" class="nav-link @if(url()->current()==route('add-book')) active @endif"><i class="fa fa-plus"></i>&nbsp;Add Book&nbsp;<i class="fa fa-book"></i></a>
+                </li>
+                @endcan
+                @can('create', App\Category::class)
+                <a href="{{route('add-category')}}" class="nav-link @if(url()->current()==route('add-category')) active @endif"><i class="fa fa-plus"></i>&nbsp;Add Category&nbsp;</a>
+                @endcan
             </ul>
             <div class="dropdown-divider"></div>
             <ul class="navbar-nav mr-3">
+              @auth
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown">Hello, {{auth()->user()->full_name}}!</a>       
+                  <div class="dropdown-menu">
+                    {{--<a class="dropdown-item" href="#">Profile</a>
+                    <div class="dropdown-divider"></div>--}}
+                    <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                  </div>
+              </li>
+              @endguest
+              @guest
                 <li class="nav-item">
-                    <a data-toggle="modal" data-target="#login-modal" class="nav-link" href="#">Login</a>                    
+                    <a class="nav-link @if(url()->current()==route('login-form')){{__('active')}}@endif" href="{{route('login-form')}}">Login</a>                    
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link @if(url()->current()==route('signup')){{__('active')}}@endif" href="{{route('signup')}}">Sign Up</a>
                 </li>
+              @endguest
             </ul>
         </div>
     </nav>
-    @guest
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header bg-dark">
-                  <h5 class="modal-title text-white">Login</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="text-white" aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-md-9">
-                        <form action="#">
-                          <div class="row form-group">                          
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-user"></i></span>
-                              </div>
-                              <input placeholder="Enter Username" type="text" class="form-control">
-                            </div>
-                          </div>
-                          <div class="row form-group">                          
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="fa fa-key"></i></span>
-                                </div>
-                                <input placeholder="Enter Password" type="password" class="form-control">
-                              </div>
-                          </div>
-                          <div class="row form-group">
-                            <button class="btn btn-block btn-sm btn-dark"><span class="fa fa-sign-in"></span> Login</button>
-                          </div>
-                        </form>                        
-                      </div>
-                    </div>
-                      
-                  </div>
-                      
-                   
-                </div>
-                
-              </div>
-            </div>
-          </div>
-          @endguest
+    

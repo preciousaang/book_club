@@ -11,4 +11,9 @@ class Category extends Model
         'image', 
         'description'
     ];
+    
+
+    public function books(){
+        return $this->hasMany('App\Book');
+    }
 }

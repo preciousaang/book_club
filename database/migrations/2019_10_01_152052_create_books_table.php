@@ -18,8 +18,9 @@ class CreateBooksTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('author');
-            $table->string('image');
-            $table->string('file')->nullable()->comment('If the book has a PDF or EPUB file');
+            $table->string('slug');
+            $table->string('cover_image');
+            $table->string('purchase_link');
             $table->string('title');
             $table->timestamps();
         });
