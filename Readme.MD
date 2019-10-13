@@ -13,4 +13,6 @@ Then run "php artisan serve"
 ## Step 5
 
 ```php
-ddafdffd
+<?php
+    echo "Hello";
+?>
