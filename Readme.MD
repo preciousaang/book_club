@@ -1,4 +1,4 @@
-Clone the repository.
-Then run "Composer Install"
-Then run "php artisan migrate --seed"
+Clone the repository.\n
+Then run "Composer Install"\n
+Then run "php artisan migrate --seed"\n
 Then run "php artisan serve"
