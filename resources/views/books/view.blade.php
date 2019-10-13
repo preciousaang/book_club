@@ -23,7 +23,7 @@
             <h3 style="font-weight: bold;">{{ucfirst($book->title)}}</h3>
             <p class="small">By: <strong>{{$book->author}}</strong></p>
             <hr>            
-            <div class="card">
+            <div id="post-review" class="card">
                 <div class="card-header">
                     <h4 class="text-center">Post A Review</h4>
                 </div>
@@ -89,7 +89,7 @@
                         <hr>
                         
                     @empty
-                        No Reviews for this book yet
+                        No Reviews for this book yet. Be the first to review <a class="card-link" href="#post-review">here</a>
                     @endforelse
                 </div>
                 <div class="card-footer">

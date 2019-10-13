@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="{{route('homepage')}}" class="navbar-brand">Book Club</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a href="{{route('homepage')}}" class="navbar-brand">Esther's Book Club</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,4 +49,4 @@
             </ul>
         </div>
     </nav>
-    
+    <div style="margin-top: 70px;"></div>

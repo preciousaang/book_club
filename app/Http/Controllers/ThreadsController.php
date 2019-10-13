@@ -12,7 +12,7 @@ class ThreadsController extends Controller
     }
 
     public function list(){
-        $threads = Thread::paginate(30);
+        $threads = Thread::latest()->paginate(30);
         return view('threads.list', [
             'threads'=>$threads,
         ]);
@@ -35,7 +35,7 @@ class ThreadsController extends Controller
             'user_id'=>auth()->user()->id,
             'content'=>$request->input('body')
         ]);
-        return redirect()->back()->with('success', 'Thread Created Successfully!');
+        return redirect()->route('forum')->with('success', 'Thread Created Successfully!');
     }
 
     public function view(Request $request){

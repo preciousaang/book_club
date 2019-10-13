@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
                     <h4 class="text-center">Start New Thread</h4>
