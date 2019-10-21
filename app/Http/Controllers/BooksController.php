@@ -9,7 +9,7 @@ use App\Category;
 class BooksController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except(['list', 'view']);
+        $this->middleware('auth')->except(['list', 'view', 'search']);
     }
     public function create(){
         return view('books.create', [
@@ -92,5 +92,16 @@ class BooksController extends Controller
             'user_id'=>auth()->user()->id,
         ]);
         return redirect()->back()->with('success', 'Review Added Successfully!');
+    }
+
+    public function search(Request $request){
+        $request->validate([
+            'search'=>'required'
+        ]);
+        $books = Book::where('title', 'like', '%'.$request->input('search').'%')->paginate(20);
+
+        return view('books.list', [
+            'books'=>$books,
+        ]);
     }
 }

@@ -31,7 +31,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            {{$books->links()}}
+            {{$books->appends(['search'=>request()->get('search')])->links()}}
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@ Route::namespace('Users')->group(function(){
 
 Route::get('books', 'BooksController@list')->name('list-books');
 Route::get('book/{slug}', 'BooksController@view')->name('view-book');
-
+Route::get('/search', 'BooksController@search')->name('search');
 Route::get('categories', 'CategoriesController@list')->name('list-categories');
 Route::get('category/{id}/books', 'CategoriesController@list_books')->name('category-books');
 Route::get('forum', 'ThreadsController@list')->name('forum');

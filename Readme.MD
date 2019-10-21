@@ -9,4 +9,3 @@ Then run "php artisan migrate --seed"
 
 ## Step 4
 Then run "php artisan serve"
-
