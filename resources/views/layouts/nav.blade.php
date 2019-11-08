@@ -30,8 +30,8 @@
 
             <form action="{{route('search')}}" method="get" class="form-inline my-2 my-lg-0">
                 @csrf
-                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" value="{{request()->get('search')}}" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <input name="search" required class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search" value="{{request()->get('search')}}" aria-label="Search">
+                <button class="btn btn-outline-light btn-sm my-2 my-sm-0" type="submit">Search</button>
             </form>
 
             <div class="dropdown-divider"></div>

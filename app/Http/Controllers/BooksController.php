@@ -80,6 +80,12 @@ class BooksController extends Controller
         return redirect()->route('view-book', $book->slug)->with('success', 'Book Updated Successfully');
     }
 
+    public function delete(Request $request){
+        $book = Book::findOrFail($request->id);
+        $book->delete();
+        return redirect()->route('list-books')->with('message', 'Book Deleted Successfully');
+    }
+
     public function add_review(Request $request){
         $request->validate([            
             'body'=>'required',

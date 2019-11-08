@@ -66,6 +66,7 @@ class BookPolicy
     public function delete(User $user, Book $book)
     {
         //
+        return $user->is_admin || ($user->id==$book->user_id);
     }
 
     /**

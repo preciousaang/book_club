@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function(){
     Route::post('add-category', 'CategoriesController@store')->name('store-category');
     Route::post('book/{id}', 'BooksController@add_review')->name('add-review');
     Route::get('book/{id}/edit', 'BooksController@edit')->name('edit-book');
+    Route::get('book/{id}/delete', 'BooksController@delete')->name('delete-book');
     Route::put('book/{id}', 'BooksController@update')->name('update-book'); 
     Route::get('forum/{id}/reply', 'ThreadsController@add_post')->name('reply-thread');
     Route::post('forum/{id}/reply', 'ThreadsController@reply')->name('store-post');

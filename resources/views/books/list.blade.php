@@ -11,6 +11,10 @@
     <h2 class="text-center">Category: {{ucfirst($category->title)}}</h2>
     @endif
     <div class="row">
+        <div class="col-sm-12">
+            @include('partials.partials')
+        </div>
+        
         @forelse ($books as $book)
             <div class="col-md-3">
                 <a href="{{route('view-book', $book->slug)}}" class="card-link">

@@ -14,8 +14,13 @@
                     <hr>
                    <p class="text-center"><i>Based on published rating</i></p>
                    @can('update', $book)
-                    <a href="{{route('edit-book', $book->id)}}" class="btn btn-block btn-dark">Edit</a>
-                   @endcan
+                    <a href="{{route('edit-book', $book->id)}}" class="btn btn-block btn-dark">Edit</a> 
+                    
+                    @endcan
+                    @can('update', $book)
+                    <a href="{{route('delete-book', $book->id)}}" onclick="return confirm('Are you sure you?');" class="btn btn-block btn-danger">Delete Book</a>
+                    @endcan
+                  
                 </div>
             </div>
         </div>
