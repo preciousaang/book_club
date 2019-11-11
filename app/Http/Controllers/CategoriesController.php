@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
+
     public function create(){
         return view('categories.create');
     }
@@ -14,7 +17,7 @@ class CategoriesController extends Controller
     public function store(Request $request){
         $request->validate([
             'title'=>'required|max:30|unique:categories', 
-            'image'=>'image', 
+            'image'=>'required|image',
             'description'=>'required',
         ]);
 
@@ -42,5 +45,37 @@ class CategoriesController extends Controller
             'books'=>$books,
             'category'=>$category
         ]);
+    }
+
+    public function edit(Request $request){
+        $category = Category::findOrFail($request->id);
+        return view('categories.edit', [
+            'category'=>$category,
+        ]);
+    }
+
+    public function update(Request $request){
+        $category = Category::findOrFail($request->id);
+        $request->validate([
+            'title'=>['required','max:30',Rule::unique('categories')->ignore($request->id)],
+            'image'=>'image',
+            'description'=>'required',
+        ]);
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
+        if($request->hasFile('image')){
+            Storage::delete('public/uploads/'.$category->image);
+            $categoryImage = $request->file('image')->store('public/uploads');
+            $category->image = basename($categoryImage);
+        }
+        $category->save();
+        return redirect()->back()->with('success', 'Category Updated Successfully');
+    }
+
+    public function delete(Request $request){
+        $category = Category::findOrFail($request->id);
+        Storage::delete('public/uploads/'.$category->image);
+        $category->delete();
+        return redirect()->route('list-categories')->with('message', 'Category Deleted Successfully');
     }
 }

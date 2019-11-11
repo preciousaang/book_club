@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function(){
     Route::post('add-book', 'BooksController@store')->name('store-book');
     Route::get('add-category', 'CategoriesController@create')->name('add-category');
     Route::post('add-category', 'CategoriesController@store')->name('store-category');
+    Route::get('category/{id}/edit', 'CategoriesController@edit')->name('edit-category');
+    Route::post('category/{id}/edit', 'CategoriesController@update')->name('update-category');
+    Route::get('category/{id}/delete', 'CategoriesController@delete')->name('delete-category');
     Route::post('book/{id}', 'BooksController@add_review')->name('add-review');
     Route::get('book/{id}/edit', 'BooksController@edit')->name('edit-book');
     Route::get('book/{id}/delete', 'BooksController@delete')->name('delete-book');
